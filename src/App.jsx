@@ -94,7 +94,7 @@ function App() {
             <div className="swiper-slide">
               <div
                 className="slider"
-                style={{ backgroundImage: "img/banner1.jpg" }}
+                style={{ backgroundImage: "url(img/banner1.jpg)" }}
               >
                 <div className="slider-txt">
                   <h1>TE LA ENTERRAMOS CON LOS PRODUCTOS</h1>
@@ -111,7 +111,7 @@ function App() {
             <div className="swiper-slide">
               <div
                 className="slider"
-                style={{ backgroundImage: "img/banner1.jpg" }}
+                style={{ backgroundImage: "url(img/banner1.jpg)" }}
               >
                 <div className="slider-txt">
                   <h1>TE LA ENTERRAMOS CON LOS PRODUCTOS</h1>
@@ -128,7 +128,7 @@ function App() {
             <div className="swiper-slide">
               <div
                 className="slider"
-                style={{ backgroundImage: "img/banner1.jpg" }}
+                style={{ backgroundImage: "url(img/banner1.jpg)" }}
               >
                 <div className="slider-txt">
                   <h1>TE LA ENTERRAMOS CON LOS PRODUCTOS</h1>
@@ -634,5 +634,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
