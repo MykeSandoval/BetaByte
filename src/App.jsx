@@ -1,4 +1,12 @@
 import { useEffect, useState } from "react";
+import { Route } from "@tanstack/react-router";
+import { rootRoute } from "./Root";
+
+export const appRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: "/",
+  component: App,
+});
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -6,7 +14,7 @@ function App() {
   useEffect(() => {
     new globalThis.Swiper(".mySwiper-1", {
       slidesPerView: 1,
-      spaceBetween: 30,
+      //spaceBetween: 30,
       loop: true,
       autoplay: {
         delay: 3000, // Tiempo de espera (en milisegundos) entre cada transición de diapositiva (3 segundos en este caso)
@@ -231,7 +239,10 @@ function App() {
                   <i className="fa-regular fa-star"></i>
                 </div>
                 <h3>Grafica NVIDIA RTX4090</h3>
-                <span className="add-cart" onClick={()=>setCartCount(cartCount+1)}>
+                <span
+                  className="add-cart"
+                  onClick={() => setCartCount(cartCount + 1)}
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                 </span>
                 <p className="price">
@@ -264,7 +275,10 @@ function App() {
                   <i className="fa-regular fa-star"></i>
                 </div>
                 <h3>Iphone 13</h3>
-                <span className="add-cart" onClick={()=>setCartCount(cartCount+1)}>
+                <span
+                  className="add-cart"
+                  onClick={() => setCartCount(cartCount + 1)}
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                 </span>
                 <p className="price">
@@ -297,7 +311,10 @@ function App() {
                   <i className="fa-regular fa-star"></i>
                 </div>
                 <h3>PC GAMER</h3>
-                <span className="add-cart" onClick={()=>setCartCount(cartCount+1)}>
+                <span
+                  className="add-cart"
+                  onClick={() => setCartCount(cartCount + 1)}
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                 </span>
                 <p className="price">
@@ -330,7 +347,10 @@ function App() {
                   <i className="fa-regular fa-star"></i>
                 </div>
                 <h3>PlayStation 5</h3>
-                <span className="add-cart" onClick={()=>setCartCount(cartCount+1)}>
+                <span
+                  className="add-cart"
+                  onClick={() => setCartCount(cartCount + 1)}
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                 </span>
                 <p className="price">
@@ -400,7 +420,10 @@ function App() {
                   <i className="fa-regular fa-star"></i>
                 </div>
                 <h3>Mouse Logitech G502</h3>
-                <span className="add-cart" onClick={()=>setCartCount(cartCount+1)}>
+                <span
+                  className="add-cart"
+                  onClick={() => setCartCount(cartCount + 1)}
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                 </span>
                 <p className="price">
@@ -433,7 +456,10 @@ function App() {
                   <i className="fa-regular fa-star"></i>
                 </div>
                 <h3>Teclado Machenike K500</h3>
-                <span className="add-cart" onClick={()=>setCartCount(cartCount+1)}>
+                <span
+                  className="add-cart"
+                  onClick={() => setCartCount(cartCount + 1)}
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                 </span>
                 <p className="price">
@@ -469,7 +495,10 @@ function App() {
                   <i className="fa-regular fa-star"></i>
                 </div>
                 <h3>Portatil MSI katana GF66</h3>
-                <span className="add-cart" onClick={()=>setCartCount(cartCount+1)}>
+                <span
+                  className="add-cart"
+                  onClick={() => setCartCount(cartCount + 1)}
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                 </span>
                 <p className="price">
@@ -502,7 +531,10 @@ function App() {
                   <i className="fa-regular fa-star"></i>
                 </div>
                 <h3>Switch</h3>
-                <span className="add-cart" onClick={()=>setCartCount(cartCount+1)}>
+                <span
+                  className="add-cart"
+                  onClick={() => setCartCount(cartCount + 1)}
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                 </span>
                 <p className="price">
@@ -634,6 +666,5 @@ function App() {
     </>
   );
 }
-
 
 export default App;
