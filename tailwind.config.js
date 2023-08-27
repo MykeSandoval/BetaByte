@@ -12,6 +12,7 @@ export default {
       colors: {
         "primary": "#bf930d",
         "background": "#ffc600",
+        "extra": "#8f6e0a"
       }
     },
   },

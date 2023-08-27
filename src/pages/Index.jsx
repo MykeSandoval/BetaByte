@@ -78,7 +78,7 @@ function Index() {
     },
   ];
 
-  const services =[
+  const services = [
     {
       icon: "envelope",
       title: "Em@il",
@@ -87,14 +87,14 @@ function Index() {
     {
       icon: "truck",
       title: "Envio rapido",
-      description: "A todas las partes de colombia",
+      description: "A todas las partes de Colombia",
     },
     {
       icon: "phone",
       title: "Venta telefonica",
       description: "Venta telefonica: 012-345-6789",
-    }
-  ]
+    },
+  ];
 
   return (
     <>
@@ -198,7 +198,6 @@ function Index() {
           ))}
         </Swiper>
       </section>
-
       <main className="bg-background">
         <section className="grid grid-cols-1 gap-12 py-12 md:grid-cols-2 lg:grid-cols-4 mx-6">
           {cards.map((card, i) => (
@@ -243,13 +242,14 @@ function Index() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full px-12">
-            <ProductCard img="/img/RTX.jpg" 
-            price={8800000} 
-            lastPrice={10000000}
+            <ProductCard
+              img="/img/RTX.jpg"
+              price={8800000}
+              lastPrice={10000000}
             >
               Grafica NVIDIA RTX4090
             </ProductCard>
-            
+
             <ProductCard
               img="/img/Iphone.jpg"
               price={2610000}
@@ -275,13 +275,14 @@ function Index() {
         <section className="flex flex-col gap-12 items-center justify-center py-6">
           <h2 className="text-4xl font-bold">Especial</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full px-12">
-          <ProductCard img="/img/mouse Logitech G502.jpg" 
-            price={399200} 
-            lastPrice={499000}
+            <ProductCard
+              img="/img/mouse Logitech G502.jpg"
+              price={399200}
+              lastPrice={499000}
             >
               Mouse Logitech G502
             </ProductCard>
-            
+
             <ProductCard
               img="/img/Machenike K500.jpg"
               price={295000}
@@ -296,14 +297,16 @@ function Index() {
             >
               Portatil MSI katana GF66
             </ProductCard>
-            <ProductCard img="/img/switch.png" 
-            price={1200000} 
-            lastPrice={1500000}>
+            <ProductCard
+              img="/img/switch.png"
+              price={1200000}
+              lastPrice={1500000}
+            >
               Nintendo Switch
             </ProductCard>
           </div>
-          </section>
-          <section className="flex flex-col gap-12 items-center justify-center py-20">
+        </section>
+        <section className="flex flex-col gap-12 items-center justify-center py-20">
           <h2 className="text-4xl font-bold">Servicios</h2>
           <section className="grid grid-cols-1 gap-10 py-10 md:grid-cols-3 lg:grid-cols-3 mx-6">
             {services.map((service, i) => (
@@ -312,7 +315,9 @@ function Index() {
                 className="flex flex-col items-center gap-4 bg-white rounded-2xl p-4"
               >
                 <div className="flex justify-center items-center mb-4">
-                  <i className={`fa-solid fa-${service.icon} text-5xl text-primary`} />
+                  <i
+                    className={`fa-solid fa-${service.icon} text-5xl text-primary`}
+                  />
                 </div>
                 <div className="flex flex-col items-center w-full text-center">
                   <span className="font-bold font-lg">
@@ -322,15 +327,62 @@ function Index() {
                       service.title
                     )}
                   </span>
-                  <span className="text-[#777] mb-2">{service.description}</span>
+                  <span className="text-[#777] mb-2">
+                    {service.description}
+                  </span>
                 </div>
               </div>
             ))}
           </section>
         </section>
-        <section>
-        </section>
       </main>
-</>
-);
+      <footer className="bg-primary text-white py-8">
+        <div className="container mx-auto grid md:grid-cols-3 gap-8 p-8">
+          <div className="flex justify-center items-center">
+            <figure>
+              <a href="#">
+                <img
+                  src="img/Logo.2.png"
+                  alt="Logo de SLee Dw"
+                  className="w-50 h-50"
+                />
+              </a>
+            </figure>
+          </div>
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold">SOBRE NOSOTROS</h2>
+            <p>
+              Bienvenido a Betabyte, tu destino en línea para descubrir
+              productos tecnológicos de vanguardia a precios asequibles. Fundada
+              con pasión por la tecnología y un compromiso inquebrantable con la
+              satisfacción del cliente, en Betabyte nos enorgullece ser tu socio
+              confiable en la búsqueda de las últimas innovaciones.
+            </p>
+          </div>
+          <div className=" space-y-4">
+            <h2 className="text-xl font-semibold">SIGUENOS</h2>
+            <div className="flex space-x-10">
+              <a href="#" className="text-white hover:text-aqua">
+                <i className="fab fa-facebook text-xl"></i>
+              </a>
+              <a href="#" className="text-white hover:text-aqua">
+                <i className="fab fa-instagram text-xl"></i>
+              </a>
+              <a href="#" className="text-white hover:text-aqua">
+                <i className="fab fa-twitter text-xl"></i>
+              </a>
+              <a href="#" className="text-white hover:text-aqua">
+                <i className="fab fa-youtube text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="bg-extra py-4 text-center">
+          <small>
+            &copy; 2023 <b>BetaByte</b> - Todos los Derechos Reservados.
+          </small>
+        </div>
+      </footer>
+    </>
+  );
 }
