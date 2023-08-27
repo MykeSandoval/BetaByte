@@ -4,7 +4,7 @@ import { rootRoute } from "./Root";
 
 export const appRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: "/",
+  path: "/i",
   component: App,
 });
 

@@ -8,9 +8,10 @@ import BestCategoryCard from "../components/BestCategoryCard";
 import ProductCard from "../components/ProductCard";
 import ImgGallery from "../components/ImgGallery";
 
+
 export const indexRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: "/i",
+  path: "/",
   component: Index,
 });
 
