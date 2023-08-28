@@ -16,6 +16,39 @@ export const indexRoute = new Route({
 });
 
 function Index() {
+
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const categories = [
+    {
+      name: "Celulares",
+      subCategories: ["Celulares y Smartphone", "Acessorios para Celulares"],
+    },
+    {
+      name: "Computadoras",
+      subCategories: [
+        "Tablets", "Portatiles", "Computadores", "Acessorios para Computadores & Poratiles",
+      ],
+    },
+    {
+      name: "Consolas",
+      subCategories: ["Para Playstation", "Para Xbox"],
+    },
+  ];
+
+  const toggleCategories = () => {
+    setIsCategoriesOpen(!isCategoriesOpen);
+  };
+
+  const handleCategoryClick = (categoryIndex) => {
+    setSelectedCategory(categoryIndex);
+  };
+
+  const handleSubCategoryClick = (e) => {
+    e.stopPropagation(); // Evita que se cierre la ventana emergente al hacer clic en una subcategoría
+  };
+
   const slices = [
     {
       hero: true,
@@ -100,7 +133,7 @@ function Index() {
   return (
     <>
       <header>
-        <header className="bg-background">
+        <header className="bg-background overflow-y-hidden">
           <div className="container py-6 flex flex-col gap-3 justify-evenly items-center md:flex-row">
             <div className="flex items-center gap-5">
               <i className="fa-solid fa-headset text-5xl" />
@@ -115,7 +148,7 @@ function Index() {
             </Link>
             <div className="flex items-center gap-3 text-5xl">
               <Link
-                to={"/login"}
+                to={"/src/pages/Login.jsx"}
                 className="fa-solid fa-user opacity-30"
               ></Link>
               <span className="mx-2 h-10 border-l border-solid border-black"></span>
@@ -133,9 +166,33 @@ function Index() {
         <nav className="bg-primary">
           <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
             <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl only:bg-red-500 list-none">
-              <li className="hover:text-white group relative">
-                <Link to={"#"}>CATEGORÍAS</Link>
-              </li>
+            <li className="group relative">
+              <button onClick={toggleCategories} className="hover:text-white"> CATEGORÍAS
+                <i
+                  className={`fas ${isCategoriesOpen ? "fa-chevron-up" : "fa-chevron-down"} ml-2`}
+                />
+              </button>
+              {isCategoriesOpen && (
+                <div className="absolute left-0 mt-2 z-10">
+                  <ul className="bg-white border border-gray-300 p-2 rounded-md shadow-md">
+                    {categories.map((category, index) => (
+                      <li key={index} className="hover:text-primary cursor-pointer">
+                        <a href={category.href} className="block">{category.name}</a>
+                        {selectedCategory === index && (
+                          <ul className="mt-2">
+                            {subCategories[index].map((subCategory, subIndex) => (
+                              <li key={subIndex} className="text-gray-600 hover:text-gray-800">
+                                <a href={subCategory.href}>{subCategory.name}</a>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </li>
               <li className="hover:text-white">
                 <Link to={"#"}>HISTORIAL</Link>
               </li>
@@ -143,7 +200,7 @@ function Index() {
                 <Link to={"#"}>VENDER</Link>
               </li>
               <li className="hover:text-white">
-                <Link to={"#"}>SOBRE NOSOTROS</Link>
+                <Link to={"#"}>OFERTAS</Link>
               </li>
               <li className="hover:text-white">
                 <Link to={"#"}>AYUDA</Link>
@@ -341,13 +398,8 @@ function Index() {
         <div className="container mx-auto grid md:grid-cols-3 gap-8 p-8">
           <div className="flex justify-center items-center">
             <figure>
-              <a href="#">
                 <img
-                  src="img/Logo.2.png"
-                  alt="Logo de SLee Dw"
-                  className="w-50 h-50"
-                />
-              </a>
+                  src="img/Logo.2.png" alt="Logo de BetaByte" className="w-50 h-50"/>
             </figure>
           </div>
           <div className="space-y-4">
@@ -363,16 +415,16 @@ function Index() {
           <div className=" space-y-4">
             <h2 className="text-xl font-semibold">SIGUENOS</h2>
             <div className="flex space-x-10">
-              <a href="#" className="text-white hover:text-aqua">
+              <a href="https://www.facebook.com"  target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-facebook text-xl"></i>
               </a>
-              <a href="#" className="text-white hover:text-aqua">
+              <a href="https://www.instagram.com"  target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-instagram text-xl"></i>
               </a>
-              <a href="#" className="text-white hover:text-aqua">
+              <a href="https://twitter.com"  target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-twitter text-xl"></i>
               </a>
-              <a href="#" className="text-white hover:text-aqua">
+              <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-youtube text-xl"></i>
               </a>
             </div>
