@@ -13,6 +13,9 @@ export default {
         "primary": "#bf930d",
         "background": "#ffc600",
         "extra": "#8f6e0a"
+      },
+      backgroundImage: {
+        "login_img": "url('/img/login_bg.jpeg')"
       }
     },
   },
