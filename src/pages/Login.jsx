@@ -1,4 +1,5 @@
-import { Route, Link } from "@tanstack/react-router";
+import React, { useState } from "react";
+import { Link, Route } from "@tanstack/react-router";
 import { rootRoute } from "../Root";
 
 export const loginRoute = new Route({
@@ -8,6 +9,12 @@ export const loginRoute = new Route({
 });
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="min-h-screen container bg-login_img bg-center bg-cover flex flex-col">
       <header className="py-8 flex justify-center">
@@ -15,7 +22,7 @@ function Login() {
           <img
             src="/img/Logo.png"
             alt="Logo de Betabyte"
-            className="max-h-10 "
+            className="max-h-10"
           />
           <span className="font-semibold text-4xl uppercase">BETABYTE</span>
         </Link>
@@ -41,12 +48,24 @@ function Login() {
               </div>
               <div className="py-4">
                 <span className="mb-2 text-md">Contraseña</span>
-                <input
-                  type="password"
-                  name="pass"
-                  id="pass"
-                  className="w-full p-2 border border-gray-300 rounded-md placeholder-light placeholder-text-gray-500"
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="pass"
+                    id="pass"
+                    className="w-full p-2 border border-gray-300 rounded-md placeholder-light placeholder-text-gray-500"
+                  />
+                  <span
+                    className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer"
+                    onClick={togglePasswordVisibility}
+                  >
+                    <i
+                      className={`fa ${
+                        showPassword ? "fa-eye-slash" : "fa-eye"
+                      }`}
+                    />
+                  </span>
+                </div>
               </div>
               <div className="flex justify-between w-full py-4">
                 <div className="mr-24">
@@ -66,7 +85,7 @@ function Login() {
                   alt="img"
                   className="w-6 h-6 inline mr-2"
                 />
-                Inicia Session por Google
+                Inicia Sesión por Google
               </button>
               <div className="text-center text-gray-400">
                 ¿No tienes una cuenta?
@@ -75,7 +94,7 @@ function Login() {
             </div>
             <div className="relative">
               <img
-                src="\public\img\image.jpg"
+                src="/public/img/image.jpg"
                 alt="img"
                 className="w-[400px] h-full hidden rounded-r-2xl md:block object-cover"
               />
