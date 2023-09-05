@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, Route } from "@tanstack/react-router";
 import { rootRoute } from "../Root";
 
@@ -89,7 +89,10 @@ function Login() {
               </button>
               <div className="text-center text-gray-400">
                 ¿No tienes una cuenta?
-                <span className="font-bold text-black"> Regístrate gratis</span>
+                <Link to={"/register"} className="font-bold text-black">
+                  {" "}
+                  Regístrate gratis
+                </Link>
               </div>
             </div>
             <div className="relative">
@@ -99,7 +102,12 @@ function Login() {
                 className="w-[400px] h-full hidden rounded-r-2xl md:block object-cover"
               />
               <div className="absolute hidden bottom-10 right-6 p-6 bg-white bg-opacity-30 backdrop-blur-sm rounded drop-shadow-lg md:block">
-                <span className="text-white text-xl">Hola</span>
+                <span className="text-white text-xl">
+                  Ingresa a nuestro portal con tu cuenta y descubre un universo
+                  de oportunidades tecnológicas a tu alcance, donde la
+                  comodidad, la seguridad y la innovación se unen para ofrecerte
+                  una experiencia única
+                </span>
               </div>
             </div>
           </div>
