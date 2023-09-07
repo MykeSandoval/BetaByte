@@ -126,6 +126,7 @@ function Register() {
                     Por favor acepta el captcha
                   </div>
                 )}
+
                 <button className="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300">
                   Registrarse
                 </button>
