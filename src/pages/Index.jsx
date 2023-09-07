@@ -16,28 +16,63 @@ export const indexRoute = new Route({
 
 function Index() {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const categories = [
     {
       name: "Celulares",
-      subCategories: ["Celulares y Smartphone", "Acessorios para Celulares"],
+      subCategories: [
+        "Accesorios para Celulares",
+        "Celulares y Smartphones",
+        "Gafas de Realidad Virtual",
+        "Radios y Handies",
+        "Repuestos de Celulares",
+        "Smartwatches y Accesorios",
+        "Otros",
+      ],
     },
     {
       name: "Computadoras",
       subCategories: [
-        "Tablets",
-        "Portatiles",
-        "Computadores",
-        "Acessorios para Computadores & Poratiles",
+        "Accesorios para PC Gaming",
+        "Almacenamiento",
+        "Cables y Hubs USB",
+        "Componentes de PC",
+        "Conectividad y Redes",
+        "Estabilizadores y UPS",
+        "Impresión",
+        "Lectores y Scanners",
+        "Limpieza y Cuidado de PCs",
+        "Monitores y Accesorios",
+        "PC de Escritorio",
+        "Palms, Agendas y Accesorios",
+        "Periféricos de PC",
+        "Portátiles y Accesorios",
+        "Software",
+        "Tablets y Accesorios",
+        "Video Beams y Pantallas",
+        "Otros",
       ],
     },
     {
       name: "Consolas",
-      subCategories: ["Para Playstation", "Para Xbox"],
+      subCategories: [
+        "Accesorios para Consolas",
+        "Accesorios para PC Gaming",
+        "Consolas",
+        "Pinballs y Máquinas de Juego",
+        "Repuestos para Consolas",
+        "Videojuegos",
+        "Otros",
+      ],
     },
   ];
 
   const toggleCategories = () => {
     setIsCategoriesOpen(!isCategoriesOpen);
+  };
+
+  const selectCategory = (categoryName) => {
+    setSelectedCategory(categoryName);
   };
 
   const slices = [
@@ -158,7 +193,10 @@ function Index() {
           <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
             <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl only:bg-red-500 list-none">
               <li className="group relative">
-                <button onClick={toggleCategories} className="hover:text-white">
+                <button
+                  onClick={toggleCategories}
+                  className="hover:text-white flex items-center"
+                >
                   {" "}
                   CATEGORÍAS
                   <i
@@ -173,25 +211,55 @@ function Index() {
                       {categories.map((category, index) => (
                         <li
                           key={index}
-                          className="hover:text-primary cursor-pointer"
+                          className={`${
+                            selectedCategory === category.name
+                              ? "text-primary font-bold"
+                              : "hover:text-primary cursor-pointer"
+                          }`}
                         >
-                          <a href={category.href} className="block">
-                            {category.name}
+                          <a
+                            href={category.href}
+                            className={`block ${
+                              selectedCategory === category.name
+                                ? "text-primary font-bold"
+                                : ""
+                            }`}
+                            onClick={() => {
+                              if (selectedCategory === category.name) {
+                                selectCategory(null);
+                              } else {
+                                selectCategory(category.name);
+                              }
+                            }}
+                          >
+                            <span className="flex items-center">
+                              {category.name}
+                              <i
+                                className={`fas ${
+                                  selectedCategory === category.name
+                                    ? "fa-chevron-up ml-auto"
+                                    : "fa-chevron-down ml-auto"
+                                }`}
+                              />
+                            </span>
                           </a>
-                          {category.subCategories && (
-                            <ul className="mt-2">
-                              {category.subCategories.map(
-                                (subCategory, subIndex) => (
-                                  <li
-                                    key={subIndex}
-                                    className="text-gray-600 hover:text-gray-800"
-                                  >
-                                    <a href={subCategory.href}>{subCategory}</a>
-                                  </li>
-                                )
-                              )}
-                            </ul>
-                          )}
+                          {selectedCategory === category.name &&
+                            category.subCategories && (
+                              <ul className="mt-2 ml-4">
+                                {category.subCategories.map(
+                                  (subCategory, subIndex) => (
+                                    <li
+                                      key={subIndex}
+                                      className="text-gray-600 hover:text-gray-800"
+                                    >
+                                      <a href={subCategory.href}>
+                                        {subCategory}
+                                      </a>
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+                            )}
                         </li>
                       ))}
                     </ul>
