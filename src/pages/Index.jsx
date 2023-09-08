@@ -240,7 +240,7 @@ function Index() {
                                       ? "text-primary font-bold"
                                       : ""
                                   }`}
-                                  onClick={() => {
+                                  onMouseEnter={() => {
                                     if (selectedCategory === category.name) {
                                       selectCategory(null);
                                     } else {
