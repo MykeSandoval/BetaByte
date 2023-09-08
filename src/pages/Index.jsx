@@ -21,7 +21,7 @@ function Index() {
 
   const categories = [
     {
-      name: "Celulares",
+      name: "CELULARES",
       subCategories: [
         "Accesorios para Celulares",
         "Celulares y Smartphones",
@@ -33,7 +33,7 @@ function Index() {
       ],
     },
     {
-      name: "Computadoras",
+      name: "COMPUTADORAS",
       subCategories: [
         "Accesorios para PC Gaming",
         "Almacenamiento",
@@ -56,7 +56,7 @@ function Index() {
       ],
     },
     {
-      name: "Consolas",
+      name: "CONSOLAS",
       subCategories: [
         "Accesorios para Consolas",
         "Accesorios para PC Gaming",
@@ -191,91 +191,102 @@ function Index() {
             </div>
           </div>
         </header>
-
-        <nav className="bg-primary">
+        <nav className="bg-primary" >
           <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
             <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl only:bg-red-500 list-none">
-            <div className="flex">
+            <div className="flex" >
             <div className="w-1/4">
-                  <li className="group relative">
-                    <button
-                      onClick={toggleCategories}
-                      className="hover:text-white flex items-center"
-                    >
-                      {" "}
-                      CATEGORÍAS
-                      <i
-                        className={`fas ${
-                          isCategoriesOpen ? "fa-chevron-up" : "fa-chevron-down"
-                        } ml-2`}
-                      />
-                    </button>
-                    {isCategoriesOpen && (
-                      <div className="absolute left-0 mt-2 z-10 flex">
-                        <div className="w-full">
-                          <ul className="bg-white border border-gray-300 p-2 rounded-md shadow-md">
-                            {categories.map((category, index) => (
-                              <li
-                                key={index}
-                                className={`${
-                                  selectedCategory === category.name
-                                    ? "text-primary font-bold"
-                                    : "hover:text-primary cursor-pointer"
-                                }`}
-                              >
-                                <a
-                                  href={category.href}
-                                  className={`block ${
-                                    selectedCategory === category.name
-                                      ? "text-primary font-bold"
-                                      : ""
-                                  }`}
-                                  onClick={() => {
-                                    if (selectedCategory === category.name) {
-                                      selectCategory(null);
-                                    } else {
-                                      selectCategory(category.name);
-                                    }
-                                  }}
-                                >
-                                  <span className="flex items-center">
-                                    {category.name}
-                                    <i
-                                      className={`fas ${
-                                        selectedCategory === category.name
-                                          ? "fa-chevron-right ml-auto"
-                                          : "fa-chevron-right ml-auto"
-                                      }`}
-                                    />
-                                  </span>
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                </div>
-                <div className="w-full">
-                  <div className="absolute left-1/4 mt-9 z-10 -ml-6" style={{ right: "100px" }}>
-                    {selectedCategory && (
-                      <ul className="bg-white border border-gray-300 p-56 rounded-e flex flex-wrap">
-                        {categories
-                          .find((category) => category.name === selectedCategory)
-                          .subCategories.map((subCategory, subIndex) => (
-                            <li
-                              key={subIndex}
-                              className="text-sm text-gray-600 hover:text-gray-800 mx-2"
-                            >
-                              <a href={subCategory.href}>{subCategory}</a>
-                            </li>
-                          ))}
-                      </ul>
-                    )}
-                  </div>
-                </div>
-              </div>
+  <li className="group relative">
+    <button
+      onClick={toggleCategories}
+      className="hover:text-white flex items-center"
+    >
+      {" "}
+      CATEGORÍAS
+      <i
+        className={`fas ${
+          isCategoriesOpen ? "fa-chevron-up" : "fa-chevron-down"
+        } ml-2`}
+      />
+    </button>
+    {isCategoriesOpen && (
+      <div className="absolute left-0 mt-2 z-10 flex">
+        <div className="w-full">
+          <ul className="bg-white border border-gray-300 p-2 rounded-md shadow-md">
+            {categories.map((category, index) => (
+              <li
+                key={index}
+                className={`${
+                  selectedCategory === category.name
+                    ? "text-primary font-bold"
+                    : "hover:text-primary cursor-pointer"
+                }`}
+              >
+                <a
+                  href={category.href}
+                  className={`block ${
+                    selectedCategory === category.name
+                      ? "text-primary font-bold"
+                      : ""
+                  }`}
+                  onClick={() => {
+                    if (selectedCategory === category.name) {
+                      selectCategory(null);
+                    } else {
+                      selectCategory(category.name);
+                    }
+                  }}
+                >
+                  <span className="flex items-center">
+                    {category.name}
+                    <i
+                      className={`fas ${
+                        selectedCategory === category.name
+                          ? "fa-chevron-right ml-auto"
+                          : "fa-chevron-right ml-auto"
+                      }`}
+                    />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    )}
+  </li>
+</div>
+<div className="w-full">
+  {selectedCategory && (
+    <div
+      className="absolute left-1/4 mt-9 z-10 -ml-2"
+      style={{ right: "100px" }}
+    >
+      <div className="bg-white border border-gray-300 p-4 rounded-e flex flex-wrap">
+        <h2 className="text-lg font-semibold text-center">
+          {selectedCategory}
+        </h2>
+        <hr className="my-4 w-full border-t border-gray-300" />
+        <ul className="flex flex-wrap -m-2">
+          {categories
+            .find((category) => category.name === selectedCategory)
+            .subCategories.map((subCategory, subIndex) => (
+              <li
+                key={subIndex}
+                className={`text-sm text-gray-600 hover:text-gray-800 m-2 mx-5 mb-5 ${
+                  subIndex % 3 === 0 ? "md:w-1/3" : "md:w-1/4"
+                }`}
+              >
+                <a href={subCategory.href}>{subCategory}</a>
+              </li>
+            ))}
+        </ul>
+      </div>
+    </div>
+  )}
+</div>
+
+</div>
               <li className="hover:text-white">
                 <Link to={"#"}>HISTORIAL</Link>
               </li>
