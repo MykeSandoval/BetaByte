@@ -26,10 +26,15 @@ function Index() {
 
   const handleMouseLeave = () => {
     const id = setTimeout(() => {
-      setIsCategoriesOpen(false);
+      if (!isMouseInsideCategory) {
+        setIsCategoriesOpen(false);
+        setSelectedCategory(null);
+      }
     }, 500);
     setTimerId(id);
   };
+
+  const [isMouseInsideCategory] = useState(false);
 
   const categories = [
     {
@@ -219,43 +224,27 @@ function Index() {
                       />
                     </button>
                     {isCategoriesOpen && (
-                      <div className="absolute left-0 mt-2 z-10 flex">
-                        {/* Cachito */}
-                        <div className="w-6 h-6 bg-white transform rotate-45 absolute top-0 right-11" />
+                      <div className="absolute -left-4 mt-4 z-10 flex">
+                        <div className="w-4 h-4 bg-gray-700 transform rotate-45 absolute -top-2 right-14" />
                         <div className="w-full">
-                          <ul className="bg-white border border-gray-300 p-2 rounded-md shadow-md">
+                          <ul className="bg-gray-700 text-white py-3 rounded-md shadow-md">
                             {categories.map((category, index) => (
                               <li
                                 key={index}
-                                className={`${
-                                  selectedCategory === category.name
-                                    ? "text-primary font-bold"
-                                    : "hover:text-primary cursor-pointer"
-                                }`}
+                                className={`px-2 hover:bg-blue-500 hover:shadow-blue-400 cursor-pointer`}
+                                onMouseEnter={() => {
+                                  if (selectedCategory === category.name) {
+                                    selectCategory(null);
+                                  } else {
+                                    selectCategory(category.name);
+                                  }
+                                }}
                               >
-                                <a
-                                  href={category.href}
-                                  className={`block ${
-                                    selectedCategory === category.name
-                                      ? "text-primary font-bold"
-                                      : ""
-                                  }`}
-                                  onMouseEnter={() => {
-                                    if (selectedCategory === category.name) {
-                                      selectCategory(null);
-                                    } else {
-                                      selectCategory(category.name);
-                                    }
-                                  }}
-                                >
+                                <a href={category.href}>
                                   <span className="flex items-center">
                                     {category.name}
                                     <i
-                                      className={`fas ${
-                                        selectedCategory === category.name
-                                          ? "fa-chevron-right ml-auto"
-                                          : "fa-chevron-right ml-auto"
-                                      }`}
+                                      className={`fas fa-chevron-right pl-5 ml-auto m-2`}
                                     />
                                   </span>
                                 </a>
@@ -270,14 +259,14 @@ function Index() {
                 <div className="w-full">
                   {selectedCategory && (
                     <div
-                      className="absolute left-1/4 mt-9 z-10 -ml-2"
+                      className="absolute left-1/4 mt-11 z-10 -ml-1"
                       style={{ right: "100px" }}
                     >
                       <div className="bg-white border border-gray-300 p-4 rounded-e flex flex-wrap">
                         <h2 className="text-lg font-semibold text-center">
                           {selectedCategory}
                         </h2>
-                        <hr className="my-4 w-full border-t border-gray-300" />
+                        <hr className="my-5 w-full border-t border-gray-300" />
                         <ul className="flex flex-wrap -m-2">
                           {categories
                             .find(
