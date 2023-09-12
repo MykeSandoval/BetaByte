@@ -1,4 +1,8 @@
-export default function ProductCard({ img, children, price, lastPrice }) {
+import { useCart } from "../context/cart";
+
+export default function ProductCard({ id,  img,  price,  lastPrice, children }) {
+  const addToCart = useCart((state)=>state.addToCart)
+
   const formatMoney = (value) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -33,9 +37,10 @@ export default function ProductCard({ img, children, price, lastPrice }) {
         </span>
       )}
       <div className="flex gap-4">
-        <span className="h-full cursor-pointer aspect-square border-2 border-primary rounded-full text-primary hover:text-white hover:bg-primary grid place-content-center">
+        <button className="h-full cursor-pointer aspect-square border-2 border-primary rounded-full text-primary hover:text-white hover:bg-primary grid place-content-center" 
+        onClick={() => addToCart({id,  img,  price,  lastPrice, title: children})}>
           <i className="fa-solid cursor-pointer fa-basket-shopping text-2xl w-auto h-auto" />
-        </span>
+        </button>
         <div className="grow text-right flex flex-col">
           <span className="text-2xl font-semibold ">{formatMoney(price)}</span>
           <span className="text-xl line-through text-black/50">

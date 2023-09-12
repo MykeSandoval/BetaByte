@@ -7,6 +7,7 @@ import "swiper/css";
 import BestCategoryCard from "../components/BestCategoryCard";
 import ProductCard from "../components/ProductCard";
 import ImgGallery from "../components/ImgGallery";
+import { useCart } from "../context/cart";
 
 export const indexRoute = new Route({
   getParentRoute: () => rootRoute,
@@ -153,6 +154,40 @@ function Index() {
     },
   ];
 
+  const bestProducts = [
+    {
+      id: 1,
+      img: "/img/RTX.jpg",
+      price: 2610000,
+      lastPrice: 5000000,
+      title: "Grafica NVIDIA RTX4090",
+    },
+
+    {
+      id: 2,
+      img: "/img/Iphone.jpg",
+      price: 2610000,
+      lastPrice: 5000000,
+      title: "Iphone 13",
+    },
+
+    {
+      id: 3,
+      img: "/img/PC gamer.jpg",
+      price: 4000000,
+      lastPrice: 5000000,
+      title: "PC GAMER",
+    },
+
+    {
+      id: 4,
+      img: "/img/PS5.jpg",
+      price: 2699250,
+      lastPrice: 3599000,
+      title: "PlayStation 5",
+    },
+  ];
+
   const services = [
     {
       icon: "envelope",
@@ -170,6 +205,9 @@ function Index() {
       description: "Venta telefonica: 012-345-6789",
     },
   ];
+
+  const count = useCart((state) => state.count());
+  console.log(count);
 
   return (
     <>
@@ -199,7 +237,7 @@ function Index() {
               ></Link>
               <div className="flex flex-col text-base">
                 <span>Carrito</span>
-                <span>( {0} )</span>
+                <span>( {count} )</span>
               </div>
             </div>
           </div>
@@ -395,31 +433,11 @@ function Index() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full px-12">
-            <ProductCard
-              img="/img/RTX.jpg"
-              price={8800000}
-              lastPrice={10000000}
-            >
-              Grafica NVIDIA RTX4090
-            </ProductCard>
-
-            <ProductCard
-              img="/img/Iphone.jpg"
-              price={2610000}
-              lastPrice={3000000}
-            >
-              Iphone 13
-            </ProductCard>
-            <ProductCard
-              img="/img/PC gamer.jpg"
-              price={4000000}
-              lastPrice={5000000}
-            >
-              PC GAMER
-            </ProductCard>
-            <ProductCard img="/img/PS5.jpg" price={2699250} lastPrice={3599000}>
-              PlayStation 5
-            </ProductCard>
+            {bestProducts.map((product) => (
+              <ProductCard key={product.id} {...product}>
+                {product.title}
+              </ProductCard>
+            ))}
           </div>
         </section>
         <section className=" mt-12 img-container">
