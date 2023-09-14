@@ -271,13 +271,13 @@ function Index() {
           </div>
         </header>
         <nav className="bg-primary">
-          <div
-            className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3"
-            onMouseEnter={handleMouseEnter} // Agregar manejador al contenedor principal
-            onMouseLeave={handleMouseLeave} // Agregar manejador al contenedor principal
-          >
+          <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
             <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl list-none">
-              <div className="flex">
+              <div
+                className="flex"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 <div className="w-1/4 relative">
                   <li className="group relative">
                     <button
