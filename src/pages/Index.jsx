@@ -87,10 +87,6 @@ function Index() {
     },
   ];
 
-  const selectCategory = (categoryName) => {
-    setSelectedCategory(categoryName);
-  };
-
   const slices = [
     {
       hero: true,
@@ -158,16 +154,16 @@ function Index() {
     {
       id: 1,
       img: "/img/RTX.jpg",
-      price: 2610000,
-      lastPrice: 5000000,
+      price: 8000000,
+      lastPrice: 10000000,
       title: "Grafica NVIDIA RTX4090",
     },
 
     {
       id: 2,
       img: "/img/Iphone.jpg",
-      price: 2610000,
-      lastPrice: 5000000,
+      price: 3120000,
+      lastPrice: 4500000,
       title: "Iphone 13",
     },
 
@@ -185,6 +181,38 @@ function Index() {
       price: 2699250,
       lastPrice: 3599000,
       title: "PlayStation 5",
+    },
+  ];
+
+  const specialProducts = [
+    {
+      id: 5,
+      img: "/img/mouse Logitech G502.jpg",
+      price: 399200,
+      lastPrice: 499000,
+      title: "Mouse Logitech G502",
+    },
+
+    {
+      id: 6,
+      img: "/img/Machenike K500.jpg",
+      price: 295000,
+      lastPrice: 369000,
+      title: "Teclado Machenike K500",
+    },
+    {
+      id: 7,
+      img: "/img/switch.png",
+      price: 1200000,
+      lastPrice: 1500000,
+      title: "Nintendo Switch",
+    },
+    {
+      id: 8,
+      img: "/img/portatil MSI katana GF66.jpg",
+      price: 4000000,
+      lastPrice: 5000000,
+      title: "Portatil MSI katana GF66",
     },
   ];
 
@@ -243,16 +271,20 @@ function Index() {
           </div>
         </header>
         <nav className="bg-primary">
-          <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
-            <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl only:bg-red-500 list-none">
+          <div
+            className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3"
+            onMouseEnter={handleMouseEnter} // Agregar manejador al contenedor principal
+            onMouseLeave={handleMouseLeave} // Agregar manejador al contenedor principal
+          >
+            <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl list-none">
               <div className="flex">
                 <div className="w-1/4 relative">
-                  <li
-                    className="group relative"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <button className="hover:text-white flex items-center">
+                  <li className="group relative">
+                    <button
+                      className={`hover:text-white flex items-center ${
+                        isCategoriesOpen ? "text-white" : ""
+                      }`}
+                    >
                       {" "}
                       CATEGORÍAS
                       <i
@@ -272,9 +304,9 @@ function Index() {
                                 className={`px-2 hover:bg-blue-500 hover:shadow-blue-400 cursor-pointer`}
                                 onMouseEnter={() => {
                                   if (selectedCategory === category.name) {
-                                    selectCategory(null);
+                                    setSelectedCategory(null);
                                   } else {
-                                    selectCategory(category.name);
+                                    setSelectedCategory(category.name);
                                   }
                                 }}
                               >
@@ -446,35 +478,11 @@ function Index() {
         <section className="flex flex-col gap-12 items-center justify-center py-6">
           <h2 className="text-4xl font-bold">Especial</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full px-12">
-            <ProductCard
-              img="/img/mouse Logitech G502.jpg"
-              price={399200}
-              lastPrice={499000}
-            >
-              Mouse Logitech G502
-            </ProductCard>
-
-            <ProductCard
-              img="/img/Machenike K500.jpg"
-              price={295000}
-              lastPrice={369000}
-            >
-              Teclado Machenike K500
-            </ProductCard>
-            <ProductCard
-              img="/img/portatil MSI katana GF66.jpg"
-              price={4000000}
-              lastPrice={5000000}
-            >
-              Portatil MSI katana GF66
-            </ProductCard>
-            <ProductCard
-              img="/img/switch.png"
-              price={1200000}
-              lastPrice={1500000}
-            >
-              Nintendo Switch
-            </ProductCard>
+            {specialProducts.map((product) => (
+              <ProductCard key={product.id} {...product}>
+                {product.title}
+              </ProductCard>
+            ))}
           </div>
         </section>
         <section className="flex flex-col gap-12 items-center justify-center py-20">
