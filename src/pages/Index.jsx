@@ -355,7 +355,6 @@ function Index() {
                       </div>
                     </div>
                   )}
-                </li>
               </div>
               <div className="w-full" >
                 {selectedCategory && (
