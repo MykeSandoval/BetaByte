@@ -18,10 +18,15 @@ export const indexRoute = new Route({
 function Index() {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [activeHover, setActiveHover] = useState({
+    destacados: true,
+    recientes: false,
+    masVendidos: false,
+  });
   const [timerId, setTimerId] = useState(null);
 
   const handleMouseEnter = () => {
-    clearTimeout(timerId); 
+    clearTimeout(timerId);
     setIsCategoriesOpen(true);
   };
 
@@ -29,7 +34,7 @@ function Index() {
     const id = setTimeout(() => {
       setIsCategoriesOpen(false);
       setSelectedCategory(null);
-    }, 500); 
+    }, 500);
     setTimerId(id);
   };
 
@@ -146,7 +151,7 @@ function Index() {
     },
   ];
 
-  const bestProducts = [
+  const [bestProducts] = useState([
     {
       id: 1,
       img: "/img/RTX.jpg",
@@ -178,8 +183,13 @@ function Index() {
       lastPrice: 3599000,
       title: "PlayStation 5",
     },
+  ]);
 
-  ];
+  const [selectedProductsType, setSelectedProductsType] =
+    useState("destacados");
+
+  const filteredProducts =
+    selectedProductsType === "destacados" ? bestProducts : [];
 
   const specialProducts = [
     {
@@ -233,8 +243,6 @@ function Index() {
 
   const count = useCart((state) => state.count());
   console.log(count);
-
-  
 
   return (
     <>
@@ -355,65 +363,65 @@ function Index() {
                       </div>
                     </div>
                   )}
-              </div>
-              <div className="w-full" >
-                {selectedCategory && (
-                  <div
-                    className="absolute left-1/4 mt-11 z-10 -ml-1"
-                    style={{ right: "100px" }}
-                  >
-                    <div className="bg-white border border-gray-300 p-4 rounded-e flex flex-wrap" >
-                      <h2 className="text-lg font-semibold text-center" >
-                        {selectedCategory}
-                      </h2>
-                      <hr className="my-5 w-full border-t border-gray-300" />
-                      <ul className="flex flex-wrap -m-2" >
-                        {categories
-                          .find(
-                            (category) => category.name === selectedCategory
-                          )
-                          .subCategories.map((subCategory, subIndex) => (
-                            <li
-                              key={subIndex}
-                              className={`text-sm text-gray-600 hover:text-gray-800 m-2 mx-5 mb-5 ${
-                                subIndex % 3 === 0 ? "md:w-1/3" : "md:w-1/4"
-                              }`}
-                            >
-                              <a href={subCategory.href}>{subCategory}</a>
-                            </li>
-                          ))}
-                      </ul>
+                </div>
+                <div className="w-full">
+                  {selectedCategory && (
+                    <div
+                      className="absolute left-1/4 mt-11 z-10 -ml-1"
+                      style={{ right: "100px" }}
+                    >
+                      <div className="bg-white border border-gray-300 p-4 rounded-e flex flex-wrap">
+                        <h2 className="text-lg font-semibold text-center">
+                          {selectedCategory}
+                        </h2>
+                        <hr className="my-5 w-full border-t border-gray-300" />
+                        <ul className="flex flex-wrap -m-2">
+                          {categories
+                            .find(
+                              (category) => category.name === selectedCategory
+                            )
+                            .subCategories.map((subCategory, subIndex) => (
+                              <li
+                                key={subIndex}
+                                className={`text-sm text-gray-600 hover:text-gray-800 m-2 mx-5 mb-5 ${
+                                  subIndex % 3 === 0 ? "md:w-1/3" : "md:w-1/4"
+                                }`}
+                              >
+                                <a href={subCategory.href}>{subCategory}</a>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
-            <li className="hover:text-white">
-              <Link to={"#"}>HISTORIAL</Link>
-            </li>
-            <li className="hover:text-white">
-              <Link to={"#"}>VENDER</Link>
-            </li>
-            <li className="hover:text-white">
-              <Link to={"#"}>OFERTAS</Link>
-            </li>
-            <li className="hover:text-white">
-              <Link to={"#"}>AYUDA</Link>
-            </li>
-          </ul>
-          <form className="flex items-center border-2 border-solid border-white bg-white rounded-full overflow-hidden">
-            <input
-              type="text"
-              name="search"
-              placeholder="Buscar..."
-              className="px-3 outline-none p-2 border-none "
-            />
-            <button className="bg-primary p-3">
-              <i className="fa-solid fa-magnifying-glass text-white mr-1" />
-            </button>
-          </form>
-        </div>
-      </nav>
+              <li className="hover:text-white">
+                <Link to={"#"}>HISTORIAL</Link>
+              </li>
+              <li className="hover:text-white">
+                <Link to={"#"}>VENDER</Link>
+              </li>
+              <li className="hover:text-white">
+                <Link to={"#"}>OFERTAS</Link>
+              </li>
+              <li className="hover:text-white">
+                <Link to={"#"}>AYUDA</Link>
+              </li>
+            </ul>
+            <form className="flex items-center border-2 border-solid border-white bg-white rounded-full overflow-hidden">
+              <input
+                type="text"
+                name="search"
+                placeholder="Buscar..."
+                className="px-3 outline-none p-2 border-none "
+              />
+              <button className="bg-primary p-3">
+                <i className="fa-solid fa-magnifying-glass text-white mr-1" />
+              </button>
+            </form>
+          </div>
+        </nav>
       </header>
       <section>
         <Swiper
@@ -484,18 +492,54 @@ function Index() {
         <section className="flex flex-col gap-6 items-center justify-center py-6">
           <h2 className="text-4xl font-bold">Mejores Productos</h2>
           <div className="flex gap-x-8 gap-y-4 flex-wrap justify-center px-12">
-            <div className="bg-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary font-semibold text-xl hover:text-white">
+            <div
+              className={`bg-white rounded-full py-3 px-5 cursor-pointer  hover:bg-primary font-semibold text-xl hover:text-white ${
+                activeHover.destacados ? "text-white bg-[#bf930d]" : ""
+              }`}
+              onClick={() => {
+                setSelectedProductsType("destacados");
+                setActiveHover({
+                  destacados: true,
+                  recientes: false,
+                  masVendidos: false,
+                });
+              }}
+            >
               Destacados
             </div>
-            <div className="bg-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary font-semibold text-xl hover:text-white">
+            <div
+              className={`bg-white rounded-full py-3 px-5 cursor-pointer  hover:bg-primary font-semibold text-xl hover:text-white ${
+                activeHover.recientes ? "text-white bg-[#bf930d]" : ""
+              }`}
+              onClick={() => {
+                setSelectedProductsType("recientes");
+                setActiveHover({
+                  destacados: false,
+                  masVendidos: false,
+                  recientes: true,
+                });
+              }}
+            >
               Recientes
             </div>
-            <div className="bg-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary font-semibold text-xl hover:text-white">
+            <div
+              className={`bg-white rounded-full py-3 px-5 cursor-pointer  hover:bg-primary font-semibold text-xl hover:text-white ${
+                activeHover.masVendidos ? "text-white bg-[#bf930d]" : ""
+              }`}
+              onClick={() => {
+                setSelectedProductsType("masVendidos");
+                setActiveHover({
+                  destacados: false,
+                  masVendidos: true,
+                  recientes: false,
+                });
+              }}
+            >
               Más Vendidos
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full px-12">
-            {bestProducts.map((product) => (
+            {filteredProducts.map((product) => (
               <ProductCard key={product.id} {...product}>
                 {product.title}
               </ProductCard>
