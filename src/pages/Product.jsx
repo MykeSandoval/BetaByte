@@ -3,8 +3,8 @@ import { rootRoute } from "../Root";
 import { Header } from "../components/Header";
 
 export const oneProductRoute = new Route({
-  path: "/product/$id",
   getParentRoute: () => rootRoute,
+  path: "/product/$id",
   component: Product,
 });
 

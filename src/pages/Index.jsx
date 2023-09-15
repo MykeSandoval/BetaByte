@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Route, Link } from "@tanstack/react-router";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper/modules";
@@ -19,8 +19,6 @@ function Index() {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [timerId, setTimerId] = useState(null);
-
-  const categoriesRef = useRef(null); 
 
   const handleMouseEnter = () => {
     clearTimeout(timerId); 
@@ -154,7 +152,7 @@ function Index() {
       img: "/img/RTX.jpg",
       price: 8000000,
       lastPrice: 10000000,
-      title: "Grafica NVIDIA RTX4090",
+      title: "Tarjeta Grafica NVIDIA RTX4090",
     },
 
     {
@@ -236,6 +234,8 @@ function Index() {
   const count = useCart((state) => state.count());
   console.log(count);
 
+  
+
   return (
     <>
       <header>
@@ -259,7 +259,7 @@ function Index() {
               ></Link>
               <span className="mx-2 h-10 border-l border-solid border-black"></span>
               <Link
-                to={"#"}
+                to={"/cart"}
                 className="fa-solid fa-basket-shopping opacity-30"
               ></Link>
               <div className="flex flex-col text-base">
