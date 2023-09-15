@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Route, Link } from "@tanstack/react-router";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, Autoplay } from "swiper/modules";
@@ -20,22 +20,20 @@ function Index() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [timerId, setTimerId] = useState(null);
 
+  const categoriesRef = useRef(null); 
+
   const handleMouseEnter = () => {
-    clearTimeout(timerId);
+    clearTimeout(timerId); 
     setIsCategoriesOpen(true);
   };
 
   const handleMouseLeave = () => {
     const id = setTimeout(() => {
-      if (!isMouseInsideCategory) {
-        setIsCategoriesOpen(false);
-        setSelectedCategory(null);
-      }
-    }, 500);
+      setIsCategoriesOpen(false);
+      setSelectedCategory(null);
+    }, 500); 
     setTimerId(id);
   };
-
-  const [isMouseInsideCategory] = useState(false);
 
   const categories = [
     {
@@ -186,9 +184,46 @@ function Index() {
       lastPrice: 3599000,
       title: "PlayStation 5",
     },
+
   ];
 
-  const services = [
+  const specialProducts = [
+    {
+      id: 5,
+      img: "/img/mouse Logitech G502.jpg",
+      price: 399200,
+      lastPrice: 499000,
+      title: "Mouse Logitech G502"
+    },
+      
+
+      {
+        id: 6,
+        img: "/img/Machenike K500.jpg",
+        price: 295000,
+        lastPrice: 369000,
+        title: "Teclado Machenike K500"
+      },
+      
+      {
+        id: 7,
+        img: "/img/portatil MSI katana GF66.jpg",
+        price: 4000000,
+        lastPrice: 5000000,
+        title: "Portatil MSI katana GF66"
+      },
+      
+      {
+        id: 8,
+        img: "/img/switch.png",
+        price: 1200000,
+        lastPrice: 1500000,
+        title: "Nintendo Switch"
+      },
+      
+    ];
+    
+    const services = [
     {
       icon: "envelope",
       title: "Em@il",
@@ -243,115 +278,115 @@ function Index() {
           </div>
         </header>
         <nav className="bg-primary">
-          <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
-            <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl only:bg-red-500 list-none">
-              <div className="flex">
-                <div className="w-1/4 relative">
-                  <li
-                    className="group relative"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <button className="hover:text-white flex items-center">
-                      {" "}
-                      CATEGORÍAS
-                      <i
-                        className={`fas ${
-                          isCategoriesOpen ? "fa-chevron-up" : "fa-chevron-down"
-                        } ml-2`}
-                      />
-                    </button>
-                    {isCategoriesOpen && (
-                      <div className="absolute -left-4 mt-4 z-10 flex">
-                        <div className="w-4 h-4 bg-gray-700 transform rotate-45 absolute -top-2 right-14" />
-                        <div className="w-full">
-                          <ul className="bg-gray-700 text-white py-3 rounded-md shadow-md">
-                            {categories.map((category, index) => (
-                              <li
-                                key={index}
-                                className={`px-2 hover:bg-blue-500 hover:shadow-blue-400 cursor-pointer`}
-                                onMouseEnter={() => {
-                                  if (selectedCategory === category.name) {
-                                    selectCategory(null);
-                                  } else {
-                                    selectCategory(category.name);
-                                  }
-                                }}
-                              >
-                                <a href={category.href}>
-                                  <span className="flex items-center">
-                                    {category.name}
-                                    <i
-                                      className={`fas fa-chevron-right pl-5 ml-auto m-2`}
-                                    />
-                                  </span>
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                </div>
-                <div className="w-full">
-                  {selectedCategory && (
-                    <div
-                      className="absolute left-1/4 mt-11 z-10 -ml-1"
-                      style={{ right: "100px" }}
-                    >
-                      <div className="bg-white border border-gray-300 p-4 rounded-e flex flex-wrap">
-                        <h2 className="text-lg font-semibold text-center">
-                          {selectedCategory}
-                        </h2>
-                        <hr className="my-5 w-full border-t border-gray-300" />
-                        <ul className="flex flex-wrap -m-2">
-                          {categories
-                            .find(
-                              (category) => category.name === selectedCategory
-                            )
-                            .subCategories.map((subCategory, subIndex) => (
-                              <li
-                                key={subIndex}
-                                className={`text-sm text-gray-600 hover:text-gray-800 m-2 mx-5 mb-5 ${
-                                  subIndex % 3 === 0 ? "md:w-1/3" : "md:w-1/4"
-                                }`}
-                              >
-                                <a href={subCategory.href}>{subCategory}</a>
-                              </li>
-                            ))}
+        <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
+          <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl only:bg-red-500 list-none">
+            <div className="flex" ref={categoriesRef}>
+              <div className="w-1/4 relative">
+                <li
+                  className="group relative"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <button className="hover:text-white flex items-center">
+                    {" "}
+                    CATEGORÍAS
+                    <i
+                      className={`fas ${
+                        isCategoriesOpen ? "fa-chevron-up" : "fa-chevron-down"
+                      } ml-2`}
+                    />
+                  </button>
+                  {isCategoriesOpen && (
+                    <div className="absolute -left-4 mt-4 z-10 flex">
+                      <div className="w-4 h-4 bg-gray-700 transform rotate-45 absolute -top-2 right-14" />
+                      <div className="w-full">
+                        <ul className="bg-gray-700 text-white py-3 rounded-md shadow-md">
+                          {categories.map((category, index) => (
+                            <li
+                              key={index}
+                              className={`px-2 hover:bg-blue-500 hover:shadow-blue-400 cursor-pointer`}
+                              onMouseEnter={() => {
+                                if (selectedCategory === category.name) {
+                                  selectCategory(null);
+                                } else {
+                                  selectCategory(category.name);
+                                }
+                              }}
+                            >
+                              <a href={category.href}>
+                                <span className="flex items-center">
+                                  {category.name}
+                                  <i
+                                    className={`fas fa-chevron-right pl-5 ml-auto m-2`}
+                                  />
+                                </span>
+                              </a>
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     </div>
                   )}
-                </div>
+                </li>
               </div>
-              <li className="hover:text-white">
-                <Link to={"#"}>HISTORIAL</Link>
-              </li>
-              <li className="hover:text-white">
-                <Link to={"#"}>VENDER</Link>
-              </li>
-              <li className="hover:text-white">
-                <Link to={"#"}>OFERTAS</Link>
-              </li>
-              <li className="hover:text-white">
-                <Link to={"#"}>AYUDA</Link>
-              </li>
-            </ul>
-            <form className="flex items-center border-2 border-solid border-white bg-white rounded-full overflow-hidden">
-              <input
-                type="text"
-                name="search"
-                placeholder="Buscar..."
-                className="px-3 outline-none p-2 border-none "
-              />
-              <button className="bg-primary p-3">
-                <i className="fa-solid fa-magnifying-glass text-white mr-1" />
-              </button>
-            </form>
-          </div>
-        </nav>
+              <div className="w-full" >
+                {selectedCategory && (
+                  <div
+                    className="absolute left-1/4 mt-11 z-10 -ml-1"
+                    style={{ right: "100px" }}
+                  >
+                    <div className="bg-white border border-gray-300 p-4 rounded-e flex flex-wrap" >
+                      <h2 className="text-lg font-semibold text-center" >
+                        {selectedCategory}
+                      </h2>
+                      <hr className="my-5 w-full border-t border-gray-300" />
+                      <ul className="flex flex-wrap -m-2" >
+                        {categories
+                          .find(
+                            (category) => category.name === selectedCategory
+                          )
+                          .subCategories.map((subCategory, subIndex) => (
+                            <li
+                              key={subIndex}
+                              className={`text-sm text-gray-600 hover:text-gray-800 m-2 mx-5 mb-5 ${
+                                subIndex % 3 === 0 ? "md:w-1/3" : "md:w-1/4"
+                              }`}
+                            >
+                              <a href={subCategory.href}>{subCategory}</a>
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            <li className="hover:text-white">
+              <Link to={"#"}>HISTORIAL</Link>
+            </li>
+            <li className="hover:text-white">
+              <Link to={"#"}>VENDER</Link>
+            </li>
+            <li className="hover:text-white">
+              <Link to={"#"}>OFERTAS</Link>
+            </li>
+            <li className="hover:text-white">
+              <Link to={"#"}>AYUDA</Link>
+            </li>
+          </ul>
+          <form className="flex items-center border-2 border-solid border-white bg-white rounded-full overflow-hidden">
+            <input
+              type="text"
+              name="search"
+              placeholder="Buscar..."
+              className="px-3 outline-none p-2 border-none "
+            />
+            <button className="bg-primary p-3">
+              <i className="fa-solid fa-magnifying-glass text-white mr-1" />
+            </button>
+          </form>
+        </div>
+      </nav>
       </header>
       <section>
         <Swiper
@@ -446,35 +481,11 @@ function Index() {
         <section className="flex flex-col gap-12 items-center justify-center py-6">
           <h2 className="text-4xl font-bold">Especial</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full px-12">
-            <ProductCard
-              img="/img/mouse Logitech G502.jpg"
-              price={399200}
-              lastPrice={499000}
-            >
-              Mouse Logitech G502
-            </ProductCard>
-
-            <ProductCard
-              img="/img/Machenike K500.jpg"
-              price={295000}
-              lastPrice={369000}
-            >
-              Teclado Machenike K500
-            </ProductCard>
-            <ProductCard
-              img="/img/portatil MSI katana GF66.jpg"
-              price={4000000}
-              lastPrice={5000000}
-            >
-              Portatil MSI katana GF66
-            </ProductCard>
-            <ProductCard
-              img="/img/switch.png"
-              price={1200000}
-              lastPrice={1500000}
-            >
-              Nintendo Switch
-            </ProductCard>
+            {specialProducts.map((product) => (
+              <ProductCard key={product.id} {...product}>
+                {product.title}
+              </ProductCard>
+            ))}
           </div>
         </section>
         <section className="flex flex-col gap-12 items-center justify-center py-20">
