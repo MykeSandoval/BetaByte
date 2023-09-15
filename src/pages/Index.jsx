@@ -85,10 +85,6 @@ function Index() {
     },
   ];
 
-  const selectCategory = (categoryName) => {
-    setSelectedCategory(categoryName);
-  };
-
   const slices = [
     {
       hero: true,
@@ -156,16 +152,16 @@ function Index() {
     {
       id: 1,
       img: "/img/RTX.jpg",
-      price: 2610000,
-      lastPrice: 5000000,
+      price: 8000000,
+      lastPrice: 10000000,
       title: "Grafica NVIDIA RTX4090",
     },
 
     {
       id: 2,
       img: "/img/Iphone.jpg",
-      price: 2610000,
-      lastPrice: 5000000,
+      price: 3120000,
+      lastPrice: 4500000,
       title: "Iphone 13",
     },
 
@@ -193,37 +189,33 @@ function Index() {
       img: "/img/mouse Logitech G502.jpg",
       price: 399200,
       lastPrice: 499000,
-      title: "Mouse Logitech G502"
+      title: "Mouse Logitech G502",
     },
-      
 
-      {
-        id: 6,
-        img: "/img/Machenike K500.jpg",
-        price: 295000,
-        lastPrice: 369000,
-        title: "Teclado Machenike K500"
-      },
-      
-      {
-        id: 7,
-        img: "/img/portatil MSI katana GF66.jpg",
-        price: 4000000,
-        lastPrice: 5000000,
-        title: "Portatil MSI katana GF66"
-      },
-      
-      {
-        id: 8,
-        img: "/img/switch.png",
-        price: 1200000,
-        lastPrice: 1500000,
-        title: "Nintendo Switch"
-      },
-      
-    ];
-    
-    const services = [
+    {
+      id: 6,
+      img: "/img/Machenike K500.jpg",
+      price: 295000,
+      lastPrice: 369000,
+      title: "Teclado Machenike K500",
+    },
+    {
+      id: 7,
+      img: "/img/switch.png",
+      price: 1200000,
+      lastPrice: 1500000,
+      title: "Nintendo Switch",
+    },
+    {
+      id: 8,
+      img: "/img/portatil MSI katana GF66.jpg",
+      price: 4000000,
+      lastPrice: 5000000,
+      title: "Portatil MSI katana GF66",
+    },
+  ];
+
+  const services = [
     {
       icon: "envelope",
       title: "Em@il",
@@ -278,51 +270,87 @@ function Index() {
           </div>
         </header>
         <nav className="bg-primary">
-        <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
-          <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl only:bg-red-500 list-none">
-            <div className="flex" ref={categoriesRef}>
-              <div className="w-1/4 relative">
-                <li
-                  className="group relative"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <button className="hover:text-white flex items-center">
-                    {" "}
-                    CATEGORÍAS
-                    <i
-                      className={`fas ${
-                        isCategoriesOpen ? "fa-chevron-up" : "fa-chevron-down"
-                      } ml-2`}
-                    />
-                  </button>
-                  {isCategoriesOpen && (
-                    <div className="absolute -left-4 mt-4 z-10 flex">
-                      <div className="w-4 h-4 bg-gray-700 transform rotate-45 absolute -top-2 right-14" />
-                      <div className="w-full">
-                        <ul className="bg-gray-700 text-white py-3 rounded-md shadow-md">
-                          {categories.map((category, index) => (
-                            <li
-                              key={index}
-                              className={`px-2 hover:bg-blue-500 hover:shadow-blue-400 cursor-pointer`}
-                              onMouseEnter={() => {
-                                if (selectedCategory === category.name) {
-                                  selectCategory(null);
-                                } else {
-                                  selectCategory(category.name);
-                                }
-                              }}
-                            >
-                              <a href={category.href}>
-                                <span className="flex items-center">
-                                  {category.name}
-                                  <i
-                                    className={`fas fa-chevron-right pl-5 ml-auto m-2`}
-                                  />
-                                </span>
-                              </a>
-                            </li>
-                          ))}
+          <div className="container flex flex-col lg:flex-row justify-around items-center p-5 gap-3">
+            <ul className="flex flex-col md:flex-row gap-5 font-semibold text-xl list-none">
+              <div
+                className="flex"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className="w-1/4 relative">
+                  <li className="group relative">
+                    <button
+                      className={`hover:text-white flex items-center ${
+                        isCategoriesOpen ? "text-white" : ""
+                      }`}
+                    >
+                      {" "}
+                      CATEGORÍAS
+                      <i
+                        className={`fas ${
+                          isCategoriesOpen ? "fa-chevron-up" : "fa-chevron-down"
+                        } ml-2`}
+                      />
+                    </button>
+                    {isCategoriesOpen && (
+                      <div className="absolute -left-4 mt-4 z-10 flex">
+                        <div className="w-4 h-4 bg-gray-700 transform rotate-45 absolute -top-2 right-14" />
+                        <div className="w-full">
+                          <ul className="bg-gray-700 text-white py-3 rounded-md shadow-md">
+                            {categories.map((category, index) => (
+                              <li
+                                key={index}
+                                className={`px-2 hover:bg-blue-500 hover:shadow-blue-400 cursor-pointer`}
+                                onMouseEnter={() => {
+                                  if (selectedCategory === category.name) {
+                                    setSelectedCategory(null);
+                                  } else {
+                                    setSelectedCategory(category.name);
+                                  }
+                                }}
+                              >
+                                <a href={category.href}>
+                                  <span className="flex items-center">
+                                    {category.name}
+                                    <i
+                                      className={`fas fa-chevron-right pl-5 ml-auto m-2`}
+                                    />
+                                  </span>
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                </div>
+                <div className="w-full">
+                  {selectedCategory && (
+                    <div
+                      className="absolute left-1/4 mt-11 z-10 -ml-1"
+                      style={{ right: "100px" }}
+                    >
+                      <div className="bg-white border border-gray-300 p-4 rounded-e flex flex-wrap">
+                        <h2 className="text-lg font-semibold text-center">
+                          {selectedCategory}
+                        </h2>
+                        <hr className="my-5 w-full border-t border-gray-300" />
+                        <ul className="flex flex-wrap -m-2">
+                          {categories
+                            .find(
+                              (category) => category.name === selectedCategory
+                            )
+                            .subCategories.map((subCategory, subIndex) => (
+                              <li
+                                key={subIndex}
+                                className={`text-sm text-gray-600 hover:text-gray-800 m-2 mx-5 mb-5 ${
+                                  subIndex % 3 === 0 ? "md:w-1/3" : "md:w-1/4"
+                                }`}
+                              >
+                                <a href={subCategory.href}>{subCategory}</a>
+                              </li>
+                            ))}
                         </ul>
                       </div>
                     </div>
