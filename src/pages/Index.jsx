@@ -493,7 +493,7 @@ function Index() {
           <h2 className="text-4xl font-bold">Mejores Productos</h2>
           <div className="flex gap-x-8 gap-y-4 flex-wrap justify-center px-12">
             <div
-              className={`bg-white rounded-full py-3 px-5 cursor-pointer  hover:bg-primary font-semibold text-xl hover:text-white ${
+              className={`bg-white rounded-full py-3 px-5 cursor-pointer hover:bg-primary font-semibold text-xl hover:text-white ${
                 activeHover.destacados ? "text-white bg-[#bf930d]" : ""
               }`}
               onClick={() => {
