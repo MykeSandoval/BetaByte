@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { Route, useParams, Link } from "@tanstack/react-router";
 import { rootRoute } from "../Root";
@@ -254,19 +253,79 @@ function Product() {
         <h2 className="text-2xl py-8 font-semibold text-center border-b mb-4 pb-8">
           Descripcion
         </h2>
-        <p className="text-3xl text-center font-bold">
+        <p className="text-3xl text-center font-bold mt-10 mb-10">
           PNY GeForce RTX® 4090 24GB XLR8 Gaming VERTO™ EPIC-X RGB Triple Fan
         </p>
-        <div className="grid-1 grid-cols-1 gap-4 mt-4">
-          <div>
+        <div className="flex gap-4 mt-4">
+          <div className="text-xl text-center">
             Multiprocesadores de transmisión NVIDIA Ada Lovelace Hasta el doble
             de rendimiento y eficiencia energética
           </div>
-          <div className="text-xl">
+          <div className="text-xl text-center">
             Núcleos tensoriales de cuarta generación Hasta el doble de
             rendimiento de la IA
           </div>
+          <div className="text-xl text-center">
+            Núcleos RT de tercera generación Rendimiento de trazado de rayos de
+            hasta 2X
+          </div>
         </div>
+        <p className="text-2xl text-center mt-7 mb-7 font-semibold">
+          Visión general
+        </p>
+        <div className="flex">
+          <p className="text-sm mx-12">
+            Las GPU NVIDIA® GeForce RTX® 40 Series son más que rápidas para
+            jugadores y creadores. Están impulsados por la arquitectura
+            ultraeficiente NVIDIA Ada Lovelace que ofrece un salto cuántico
+            tanto en rendimiento como en gráficos impulsados IA. Experimente
+            mundos virtuales realistas con trazado de rayos y juegos FPS ultra
+            altos con la latencia más baja. Descubra nuevas formas
+            revolucionarias de crear y una aceleración del flujo de trabajo sin
+            precedentes. NVIDIA® GeForce RTX® 4090 es la GPU GeForce definitiva.
+            Brinda un gran salto en rendimiento, eficiencia y gráficos
+            impulsados por IA. Experimente juegos de ultra alto rendimiento,
+            mundos virtuales increíblemente detallados con ray tracing,
+            productividad sin precedentes y nuevas formas de crear. Está
+            impulsado por la arquitectura NVIDIA Ada Lovelace y viene con 24 GB
+            de memoria G6X para brindar la mejor experiencia para jugadores y
+            creadores. La nueva arquitectura NVIDIA® Ada Lovelace ofrece un
+            salto cuántico en rendimiento, eficiencia y gráficos basados en IA.
+            Tiene nuevos multiprocesadores de transmisión, núcleos de trazado de
+            rayos de tercera generación y núcleos de tensor de cuarta
+            generación. Se basa en un nuevo proceso TSMC 4N personalizado, se
+            ejecuta con relojes ultrarrápidos y cuenta con una gran caché L2.
+            Permite un trazado de rayos rápido, nuevas formas de crear y mucho
+            más. Con iluminación EPIC-X RGB electrizante, para la mejor
+            experiencia de iluminación controlable con infinitas posibilidades
+            de iluminación ARGB.
+          </p>
+        </div>
+        <p className="text-2xl text-center mt-7 mb-7 font-semibold">
+          Caracteristicas
+        </p>
+        <ul className="text-center mb-8">
+          <li>
+            Dimensiones de la tarjeta – 331,8 x 136,8 x 71,1 mm; 3.5 Ranura
+          </li>
+          <li>Dimensiones de la caja – 405x199x103mm</li>
+          <li>Núcleos NVIDIA® CUDA – 16384</li>
+          <li>Velocidad de reloj – 2235 MHz</li>
+          <li>Velocidad de impulso – 2565 MHz</li>
+          <li>Velocidad de memoria (Gbps) – 21 Gb/s</li>
+          <li>Tamaño de la memoria – 24GB GDDR6X</li>
+          <li>Ancho de banda de memoria (GB/seg) – 1008 Gb/s</li>
+          <li>TDP – 450W</li>
+          <li>Enlace NV – No soportado</li>
+          <li>Salidas – 3x DisplayPort 1.4, HDMI 2.1</li>
+          <li>Pantalla multiple – Hasta 4</li>
+          <li>Resolución – 7680 x 4320 a 120 Hz (digital)</li>
+          <li>
+            Entrada de alimentación – Uno de 16 pines (Uno de 16 pines a Cuatro
+            de 8 pines)
+          </li>
+          <li>Tipo de autobús – PCI Express 4.0 x16</li>
+        </ul>
         <div className="card-list-products grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
       </section>
       <footer className="bg-primary text-white py-8">
